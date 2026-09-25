@@ -1,0 +1,17 @@
+[package]
+name = "pvr-compiler"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.95"
+description = "Offline GLSL ES compiler and SGX543 shader binary generation"
+readme = "README.md"
+repository = "https://github.com/jhq223/pvr-compiler"
+keywords = ["vita", "powervr", "sgx543", "glsl", "shader"]
+categories = ["compilers", "graphics"]
+publish = false
+
+[build-dependencies]
+cc = { version = "1", features = ["parallel"] }
+
+[lints.rust]
+unsafe_code = "deny"
