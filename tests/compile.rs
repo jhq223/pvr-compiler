@@ -106,3 +106,14 @@ fn warnings_are_preserved_and_later_compilations_still_work() {
     );
     assert!(compiler.compile(Stage::Vertex, "void\0main").is_err());
 }
+
+#[test]
+fn mixed_precision_vector_moves_finish_without_recombining_forever() {
+    let mut compiler = Compiler::new().unwrap();
+    let result = compiler
+        .compile_binary(Stage::Fragment, include_str!("fixtures/mixed_precision.frag"))
+        .unwrap();
+    assert!(result.success, "{}", result.log);
+    assert_eq!(result.binary_bytes as usize, result.binary.len());
+    assert!(result.binary.len() > 128);
+}
